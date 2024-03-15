@@ -13,6 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
   authUser: null,
   setAuthUser: () => null,
 });
+
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };

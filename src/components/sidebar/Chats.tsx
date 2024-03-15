@@ -4,7 +4,6 @@ import Chat from "./Chat";
 export default function Chats() {
 
   const {loading, chats} = useGetChats()
-  console.log('CHATS:', chats)
   return (
     <div className="py-2 flex flex-col overflow-auto">
 
