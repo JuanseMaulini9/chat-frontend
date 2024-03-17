@@ -10,7 +10,7 @@ const useGetConversation = () => {
     const getChats = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/api/users", {
+        const res = await fetch(`${import.meta.env.BACKEND_URL}/api/users`, {
           credentials: "include",
         });
         const data = await res.json();

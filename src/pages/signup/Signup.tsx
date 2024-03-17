@@ -11,7 +11,7 @@ export default function Signup() {
   console.log(authContext);
   const [inputs, setInputs] = useState<SignUpsInputs>({
     username: "",
-    fullName: "",
+    fullname: "",
     password: "",
     confirmPassword: "",
   });
@@ -37,9 +37,9 @@ export default function Signup() {
               type="text"
               placeholder="Enter full name"
               className="w-full input input-bordered h-10"
-              value={inputs.fullName}
+              value={inputs.fullname}
               onChange={(e) =>
-                setInputs({ ...inputs, fullName: e.target.value })
+                setInputs({ ...inputs, fullname: e.target.value })
               }
             />
           </div>

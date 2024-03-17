@@ -9,30 +9,33 @@ const useSignup = () => {
 
   const signup = async ({
     username,
-    fullName,
+    fullname,
     password,
     confirmPassword,
   }: SignUpsInputs) => {
     const succes: boolean = handleInputsErrors({
       username,
-      fullName,
+      fullname,
       password,
       confirmPassword,
     });
     if (!succes) return;
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          fullName,
-          password,
-          confirmPassword,
-        }),
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.BACKEND_URL}/api/auth/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username,
+            fullname,
+            password,
+            confirmPassword,
+          }),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
 
@@ -56,11 +59,11 @@ export default useSignup;
 
 function handleInputsErrors({
   username,
-  fullName,
+  fullname,
   password,
   confirmPassword,
 }: SignUpsInputs) {
-  if (!fullName || !username || !password || !confirmPassword) {
+  if (!fullname || !username || !password || !confirmPassword) {
     toast.error("Please fill in all fields");
     return false;
   }
