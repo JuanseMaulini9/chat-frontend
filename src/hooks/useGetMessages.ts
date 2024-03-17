@@ -6,14 +6,14 @@ const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const getMessages = async () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `${import.meta.env.BACKEND_URL}/api/messages/${
-            selectedConversation?._id
-          }`,
+          `${backendUrl}/api/messages/${selectedConversation?._id}`,
           {
             credentials: "include",
           }
@@ -30,7 +30,7 @@ const useGetMessages = () => {
       }
     };
     if (selectedConversation?._id) getMessages();
-  }, [selectedConversation?._id, setMessages]);
+  }, [selectedConversation?._id, setMessages, backendUrl]);
 
   return { messages, loading };
 };

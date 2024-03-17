@@ -5,16 +5,14 @@ const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const logout = async () => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `${import.meta.env.BACKEND_URL}/api/auth/logout`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const res = await fetch(`${backendUrl}/api/auth/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);

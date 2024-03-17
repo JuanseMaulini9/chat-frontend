@@ -6,11 +6,13 @@ const useGetConversation = () => {
   const [loading, setLoading] = useState(false);
   const [chats, setChats] = useState<Chat[]>([]);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const getChats = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${import.meta.env.BACKEND_URL}/api/users`, {
+        const res = await fetch(`${backendUrl}/api/users`, {
           credentials: "include",
         });
         const data = await res.json();
@@ -28,7 +30,7 @@ const useGetConversation = () => {
     };
 
     getChats();
-  }, []);
+  }, [backendUrl]);
 
   return { loading, chats };
 };
